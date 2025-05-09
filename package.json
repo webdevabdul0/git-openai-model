@@ -1,8 +1,17 @@
 {
-    "type": "module",
-    "dependencies": {
-        "dotenv": "^16.5.0",
-        "express": "^5.1.0",
-        "openai": "latest"
-    }
+  "name": "git-openai-model",
+  "version": "1.0.0",
+  "main": "netlify/functions/chat.js",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.20.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^15.0.0"
+  }
 }
