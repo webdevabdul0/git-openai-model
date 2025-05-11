@@ -12,8 +12,10 @@ exports.handler = async function(event, context) {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: { error: 'Method Not Allowed' }
-
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ error: 'Method Not Allowed' })
     };
   }
 
@@ -36,15 +38,18 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
-      body: { reply: response.choices[0].message.content }
-
+      headers: {
+        "Content-Type": "application/json"  // ✅ this makes sure response is parsed as JSON
+      },
+      body: JSON.stringify({ reply: response.choices[0].message.content })
     };
   } catch (err) {
     return {
       statusCode: 500,
-      body: { error: err.message, details: err.response?.data }
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ error: err.message, details: err.response?.data })
     };
   }
-}; 
-
-
+};
